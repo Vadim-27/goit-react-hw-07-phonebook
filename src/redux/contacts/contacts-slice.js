@@ -1,4 +1,3 @@
-
 import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchAllContacts,
@@ -6,17 +5,16 @@ import {
   fetchDeleteContacts,
 } from './contacts-operations';
 
-
 const initialState = {
   items: [],
   loading: false,
   error: null,
-}
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(fetchAllContacts.pending, store => {
         store.loading = true;
@@ -52,26 +50,7 @@ const contactsSlice = createSlice({
         store.loading = false;
         store.error = payload;
       });
-  } 
-    // addContact: {
-    //   reducer: (state, { payload }) => {
-    //     state.push(payload);
-    //   },
-    //   prepare: data => {
-    //     return {
-    //       payload: {
-    //         id: nanoid(),
-    //         ...data,
-    //       },
-    //     };
-    //   },
-    // },
-    // deleteContact: (state, { payload }) =>
-    //   state.filter(({ id }) => id !== payload),
- 
+  },
 });
 
-// export const { addContact, deleteContact } = contactsSlice.actions;
 export default contactsSlice.reducer;
-
-
